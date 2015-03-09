@@ -17,7 +17,20 @@ window.onload = function() {
 
   /* template 替換 */
   function renderer(data,html){
-    /* 取出JSON中key */
+    
+    /* 取出JSON中key for IE 8 */
+    if (!Object.keys) {
+      Object.keys = function(obj){
+        var keys = [];
+        for(var i in obj){
+          if(obj.hasOwnProperty(i)){
+            keys.push(i);
+          }
+        }
+        return keys;
+      }
+    }
+    // console.log(Object.keys)
     var key = Object.keys(data);
 
     for(var i = 0 ; i < key.length ; i++){
